@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,10 +21,7 @@ class GenderContent extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           gender.name.toString().toUpperCase(),
-          style: const TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-          ),
+          style: kLabelText,
         )
       ],
     );
