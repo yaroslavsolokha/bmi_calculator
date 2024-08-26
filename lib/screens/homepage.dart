@@ -1,8 +1,8 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/widgets/button_container.dart';
 import 'package:bmi_calculator/widgets/gender_content.dart';
+import 'package:bmi_calculator/widgets/item_content.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum Gender { male, female }
 
@@ -18,6 +18,7 @@ class HomepageScreen extends StatefulWidget {
 class _HomepageScreenState extends State<HomepageScreen> {
   Gender? genderClicked;
   int weight = 80;
+  int age = 30;
 
   void _onGenderTap(Gender gender) {
     setState(() {
@@ -33,6 +34,18 @@ class _HomepageScreenState extends State<HomepageScreen> {
 
       if (adjustment == Adjustment.decrease) {
         weight--;
+      }
+    });
+  }
+
+  void _changeAge(Adjustment adjustment) {
+    setState(() {
+      if (adjustment == Adjustment.increase) {
+        age++;
+      }
+
+      if (adjustment == Adjustment.decrease) {
+        age--;
       }
     });
   }
@@ -58,42 +71,22 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 children: [
                   Expanded(
                     child: ButtonContainer(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('WEIGHT', style: kLabelText),
-                          Text(
-                            '$weight kg',
-                            style: kLabelText.copyWith(fontSize: 40),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: const Icon(FontAwesomeIcons.minus),
-                                iconSize: 30.0, // You can adjust the size here
-                                onPressed: () {
-                                  _changeWeight(Adjustment.decrease);
-                                },
-                                color: Colors.white, // Change color as needed
-                              ),
-                              IconButton(
-                                icon: const Icon(FontAwesomeIcons.plus),
-                                iconSize: 30.0, // You can adjust the size here
-                                onPressed: () {
-                                  _changeWeight(Adjustment.increase);
-                                },
-                                color: Colors.white, // Change color as needed
-                              )
-                            ],
-                          )
-                        ],
+                      child: ItemContent(
+                        number: weight,
+                        label: 'WEIGHT',
+                        measureLabel: ' kg',
+                        onPressed: _changeWeight,
                       ),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                       child: ButtonContainer(
-                    child: Text('todo', style: kLabelText),
+                    child: ItemContent(
+                      number: age,
+                      label: 'Age',
+                      measureLabel: '',
+                      onPressed: _changeAge,
+                    ),
                   )),
                 ],
               ),
