@@ -1,4 +1,7 @@
+import 'package:bmi_calculator/calculation.dart';
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/screens/result.dart';
+import 'package:bmi_calculator/widgets/button.dart';
 import 'package:bmi_calculator/widgets/button_container.dart';
 import 'package:bmi_calculator/widgets/gender_content.dart';
 import 'package:bmi_calculator/widgets/item_content.dart';
@@ -117,23 +120,24 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kUnclickedContainerColor,
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(20), // Set the radius here
+            Button(
+              text: 'CALCULATE',
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      Calculation calculation =
+                          Calculation(height: height, weight: weight);
+
+                      return ResultScreen(
+                        status: 'Excellent',
+                        bmi: calculation.getBMI(),
+                        description: 'Everything is great',
+                      );
+                    },
                   ),
-                ),
-                child: const Text(
-                  'CALCULATE',
-                  style: kLabelText,
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),
