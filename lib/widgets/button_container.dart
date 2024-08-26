@@ -18,26 +18,20 @@ class ButtonContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (gender != null) {
-      return Expanded(
-        child: GestureDetector(
-          onTap: () {
-            onTap!(gender!);
-          },
-          child: Container(
-            margin: const EdgeInsets.all(15.0),
-            color: color ?? defaultContainerColor,
-            child: GenderContent(gender: gender!),
-          ),
-        ),
-      );
-    } else {
-      return Expanded(
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          onTap!(gender!);
+        },
         child: Container(
-          margin: const EdgeInsets.all(15.0),
-          color: color ?? defaultContainerColor,
+          decoration: BoxDecoration(
+            color: color ?? defaultContainerColor,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+          ),
+          margin: const EdgeInsets.all(10.0),
+          child: gender != null ? GenderContent(gender: gender!) : null,
         ),
-      );
-    }
+      ),
+    );
   }
 }
