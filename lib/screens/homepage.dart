@@ -19,6 +19,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   Gender? genderClicked;
   int weight = 80;
   int age = 30;
+  int height = 180;
 
   void _onGenderTap(Gender gender) {
     setState(() {
@@ -61,10 +62,35 @@ class _HomepageScreenState extends State<HomepageScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _buildGenderSelectionRow(),
-            const Expanded(
-                child: ButtonContainer(
-              child: Text('todo', style: kLabelText),
-            )),
+            Expanded(
+              child: ButtonContainer(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'HEIGHT',
+                      style: kLabelText,
+                    ),
+                    Text(
+                      '$height cm',
+                      style: kLabelText,
+                    ),
+                    Slider(
+                      value: height.toDouble(),
+                      min: 120,
+                      max: 210,
+                      activeColor: Colors.white,
+                      thumbColor: kUnclickedContainerColor,
+                      onChanged: (value) {
+                        setState(() {
+                          height = value.toInt();
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,7 +109,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       child: ButtonContainer(
                     child: ItemContent(
                       number: age,
-                      label: 'Age',
+                      label: 'AGE',
                       measureLabel: '',
                       onPressed: _changeAge,
                     ),
