@@ -55,6 +55,7 @@ class ResultScreen extends StatelessWidget {
                       Text(
                         description,
                         style: const TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
                       )
                     ],
                   ),

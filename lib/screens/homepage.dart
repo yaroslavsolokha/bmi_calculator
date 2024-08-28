@@ -129,10 +129,12 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       Calculation calculation =
                           Calculation(height: height, weight: weight);
 
+                      Map<String, String> info = calculation.getInfo();
+
                       return ResultScreen(
-                        status: 'Excellent',
+                        status: info['status']!,
                         bmi: calculation.getBMI(),
-                        description: 'Everything is great',
+                        description: info['description']!,
                       );
                     },
                   ),
